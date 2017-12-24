@@ -1,2 +1,1 @@
-# MmclassController
-mmclass controller
+# TeachControlPad
