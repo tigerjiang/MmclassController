@@ -21,7 +21,8 @@ public class Command {
         public static final String COMMAND_GROUP_EXIT = "exit";
         public static final String COMMAND_REBOOT = "reboot";
 		public static final String COMMAND_MIC = "mic";
-		public static final String COMMAND_SPEAKER = "speaker";
+        public static final String COMMAND_SPEAKER = "speaker";
+		public static final String COMMAND_MIC_SWITCH = "mic_switch";
 		public static final String COMMAND_TAPE = "tape";
 		public static final String COMMAND_HEADSET = "headset";
        public static final String COMMAND_SOUND = "volume"; 		

@@ -11,14 +11,7 @@ import android.os.Environment;
 import android.util.Log;
 import android.view.View;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.conn.util.InetAddressUtils;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.util.EntityUtils;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -27,6 +20,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
+import java.net.Inet4Address;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
@@ -177,86 +171,10 @@ public class CommonUtil {
         return sb.toString();
     }
 
-    public static String getData(String url, String charSet) throws
-            IOException {
-        String result = "";
-        HttpGet httpGet = new HttpGet(url);
-        HttpClient httpClient = new DefaultHttpClient();
-        HttpResponse httpResponse = null;
-        try {
-            httpResponse = httpClient.execute(httpGet);
-            HttpEntity httpEntity = httpResponse.getEntity();
-            String charset = EntityUtils.getContentCharSet(httpEntity);
-            Log.d("Charset", "charset= " + charset);
-            if (httpEntity != null) {
-                InputStream inputStream = httpEntity.getContent();
-                result = convertStreamToString(inputStream, charSet);
 
-            }
-        } catch (ClientProtocolException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            throw e;
-        } finally {
-            httpClient.getConnectionManager().shutdown();
-            httpResponse = null;
-        }
-        return result;
 
-    }
 
-    public static String convertTime(long mis) {
-        int time = (int) (mis / 1000);
-        StringBuilder sb = new StringBuilder();
-        int leftseconds = time % 60;
-        int minutes = time / 60;
-        int leftMinutes = minutes % 60;
-        int hour = minutes / 60;
 
-        if (hour < 10) {
-            sb.append("0").append(hour).append(":");
-        } else {
-            sb.append("0").append(hour).append(":");
-        }
-        if (minutes < 10) {
-            sb.append("0").append(leftMinutes).append(":");
-        } else {
-            sb.append(leftMinutes).append(":");
-        }
-        if (leftseconds < 10) {
-            sb.append("0").append(leftseconds);
-        } else {
-            sb.append(leftseconds);
-        }
-
-        return sb.toString();
-    }
-
-    public static String getFileData(String url)
-            throws IOException {
-        String result = "";
-        HttpGet httpGet = new HttpGet(url);
-        HttpClient httpClient = new DefaultHttpClient();
-        HttpResponse httpResponse = null;
-        try {
-            httpResponse = httpClient.execute(httpGet);
-            HttpEntity httpEntity = httpResponse.getEntity();
-            if (httpEntity != null) {
-                InputStream inputStream = httpEntity.getContent();
-                result = convertStreamToString(inputStream, CHARSET_GBK);
-
-            }
-        } catch (ClientProtocolException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            throw e;
-        } finally {
-            httpClient.getConnectionManager().shutdown();
-            httpResponse = null;
-        }
-        return result;
-
-    }
 
     public static MediaMessage parseMessage(String content) {
         MediaMessage message = null;
@@ -287,7 +205,7 @@ public class CommonUtil {
                         .getInetAddresses(); enumIpAddr.hasMoreElements();) {
                     InetAddress inetAddress = enumIpAddr.nextElement();
                     if (!inetAddress.isLoopbackAddress()
-                            && InetAddressUtils.isIPv4Address(inetAddress.getHostAddress())) {
+                            &&  (inetAddress instanceof Inet4Address)) {
                         return inetAddress.getHostAddress().toString();
                     }
                 }

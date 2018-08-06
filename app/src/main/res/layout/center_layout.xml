@@ -51,7 +51,8 @@
             android:layout_marginRight="15dp"
             android:layout_toLeftOf="@+id/headset"
             android:background="@drawable/mic_open_button"
-            android:gravity="center"/>
+            android:gravity="center"
+            android:visibility="invisible"/>
 
         <Button
             android:id="@+id/headset"
@@ -72,7 +73,8 @@
             android:layout_marginRight="15dp"
             android:layout_toLeftOf="@+id/setting"
             android:background="@drawable/speaker_open_button"
-            android:gravity="center"/>
+            android:gravity="center"
+            android:visibility="invisible"/>
 
         <ImageButton
             android:id="@+id/setting"
@@ -347,7 +349,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/button_middle_height"
                 android:layout_below="@+id/self_study_model"
-                android:layout_marginTop="100dp"
+                android:layout_marginTop="20dp"
                 android:clickable="true"
                 android:gravity="center"
                 android:orientation="horizontal">

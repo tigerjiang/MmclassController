@@ -13,8 +13,8 @@ package com.mmclass.libsiren;
 import android.content.Context;
 import android.util.Log;
 
-import org.apache.http.conn.util.InetAddressUtils;
 
+import java.net.Inet4Address;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
@@ -42,7 +42,7 @@ public class LibSiren {
 	static {
 
 		try {
-			System.loadLibrary("sirenjni");
+//			System.loadLibrary("sirenjni");
 		} catch (UnsatisfiedLinkError ule) {
 			Log.e(TAG, "Can't load sirenjni library: " + ule);
 			// / FIXME Alert user
@@ -237,8 +237,7 @@ public class LibSiren {
 						.getInetAddresses(); enumIpAddr.hasMoreElements();) {
 					InetAddress inetAddress = enumIpAddr.nextElement();
 					if (!inetAddress.isLoopbackAddress()
-							&& InetAddressUtils.isIPv4Address(inetAddress
-									.getHostAddress())) {
+							&& (inetAddress instanceof Inet4Address)) {
 						return inetAddress.getHostAddress().toString();
 					}
 				}

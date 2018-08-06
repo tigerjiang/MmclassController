@@ -74,22 +74,30 @@ public class CommandManager {
                    + "," + "param:"+sound;
            mLibSiren.sendMessage(Command.formatMessage(setSoundMsg));
        }
-       
+       //MI
        public static void sendSetMicMessage(String param) {
-           String setMicMsg = "type:cmd" + "," + "receiver:teacher"
+           String setMicMsg = "type:cmd" + "," + "receiver:all"
                    + "," + "mode:" + Command.Modes.MODE_GLOBAL + "," + "command:"
                    + Command.COMMANDS.COMMAND_MIC + "," + "group:g1"
                    + "," + "param:"+param;
            mLibSiren.sendMessage(Command.formatMessage(setMicMsg));
        }
-       
+       //SPEAKE
        public static void sendSetSpeakerMessage(String params) {
-           String setSpeakerAMsg = "type:cmd" + "," + "receiver:teacher"
+           String setSpeakerAMsg = "type:cmd" + "," + "receiver:all"
                    + "," + "mode:" + Command.Modes.MODE_GLOBAL + "," + "command:"
                    + Command.COMMANDS.COMMAND_SPEAKER + "," + "group:g1"
                    + "," + "param:"+params;
            mLibSiren.sendMessage(Command.formatMessage(setSpeakerAMsg));
        }
+       //
+	   public static void sendMicSwitchMessage(String params) {
+		   String setSpeakerAMsg = "type:cmd" + "," + "receiver:all"
+				   + "," + "mode:" + Command.Modes.MODE_GLOBAL + "," + "command:"
+				   + Command.COMMANDS.COMMAND_MIC_SWITCH + "," + "group:g1"
+				   + "," + "param:"+params;
+		   mLibSiren.sendMessage(Command.formatMessage(setSpeakerAMsg));
+	   }
        public static void sendSetHeadsetMessage(String params) {
            String setHeadsetMsg = "type:cmd" + "," + "receiver:teacher"
                    + "," + "mode:" + Command.Modes.MODE_GLOBAL + "," + "command:"
